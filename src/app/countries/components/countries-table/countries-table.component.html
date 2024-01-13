@@ -1,0 +1,40 @@
+
+@if (countries.length === 0) {
+    <div class="alert alert-warning">
+        No hay países para mostrar
+    </div>
+}@else{
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Icon</th>
+                <th>Bandera</th>
+                <th>Nombre</th>
+                <th>Capital</th>
+                <th>Región</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (country of countries; track $index) {
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{country.flag}}</td>
+                    <td>
+                        <img [src]="country.flags.svg" 
+                        [alt]="country.flags.alt" 
+                        height="20" 
+                        width="30">
+                    </td>
+                    <td>{{country.name.common}}</td>
+                    <td>{{country.capital}}</td>
+                    <td>{{country.region}}</td>
+                    <td>
+                        <a [routerLink]="['/countries/by', country.cca3]">Info</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
